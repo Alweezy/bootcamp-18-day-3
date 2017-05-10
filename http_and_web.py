@@ -7,10 +7,35 @@ def get_name(artist_name):
         name = '' + artist_name
         name = ''.join(name.split())
     else:
-        return 'enter a valid artist_name: '
+        return 'Enter a valid artist_name: '
     if name:
         base_url = 'https://itunes.apple.com/search?term={}&entity=musicVideo'
         artist = name.lower()
         complete_url = base_url.format(artist)
         return complete_url, name
     return 'artist name is a requirement'
+
+
+def search_song(get_url):
+    """
+    Use url to perform search and return a list of songs
+    :param get_url:
+    :return: songs
+    """
+    import requests
+    url, name = get_name(get_url)
+    if url:
+        response = requests.get(url)
+        results = response.json()['results']
+        for song in results:
+            artist = song['artistName']
+            artist = ''.join(artist.split())
+            if artist == name:
+                print(song['artistName'],
+                      song["trackName"],
+                      song["collectionPrice"],
+                      song["trackExplicitness"],
+                      song["kind"])
+        return ''
+
+# print(search_song('Shakira'))
