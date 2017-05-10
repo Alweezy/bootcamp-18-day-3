@@ -26,3 +26,7 @@ class TestGetName(TestCase):
         getname = get_name('Rihanna')
         url = ('https://itunes.apple.com/search?term=rihanna&entity=musicVideo', 'Rihanna')
         self.assertTrue(getname, url)
+        
+    def test_empty_imput(self):
+        getname = get_name('')
+        self.assertEqual(getname, 'artist name is a requirement')
