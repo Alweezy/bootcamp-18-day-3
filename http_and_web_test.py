@@ -21,3 +21,8 @@ class TestGetName(TestCase):
     def test_artist_name_is_not_set(self):
         getname = get_name(())
         self.assertEqual(getname, 'Enter a valid artist_name: ')
+
+    def test__name_returns_correct_url(self):
+        getname = get_name('Rihanna')
+        url = ('https://itunes.apple.com/search?term=rihanna&entity=musicVideo', 'Rihanna')
+        self.assertTrue(getname, url)
