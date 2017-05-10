@@ -13,3 +13,11 @@ class TestGetName(TestCase):
     def test_artist_name_is_not_list(self):
         getname = get_name([])
         self.assertEqual(getname, 'Enter a valid artist_name: ')
+
+    def test_artist_name_is_not_dictionary(self):
+        getname = get_name({})
+        self.assertEqual(getname, 'Enter a valid artist_name: ')
+
+    def test_artist_name_is_not_set(self):
+        getname = get_name(())
+        self.assertEqual(getname, 'Enter a valid artist_name: ')
